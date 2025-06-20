@@ -1,0 +1,33 @@
+# Clase dueño de mascota
+class Dueño:
+    def __init__(self, nombre, telefono):
+        self.nombre = nombre
+        self.telefono = telefono
+
+    def __str__(self):
+        return f"{self.nombre} (Tel: {self.telefono})"
+
+
+# Clase para representar a una mascota
+class Mascota:
+    def __init__(self, nombre, especie, edad, dueño):
+        self.nombre = nombre
+        self.especie = especie  # ejemplo: gallo, gato, conejo
+        self.edad = edad
+        self.dueño = dueño  # tipo Dueño
+
+    def __str__(self):
+        return f"{self.nombre}, {self.especie}, {self.edad} años (Dueño: {self.dueño.nombre})"
+
+
+# Clase para una cita médica en la veterinaria
+class CitaVeterinaria:
+    def __init__(self, mascota, fecha, motivo):
+        self.mascota = mascota  #  tipo Mascota
+        self.fecha = fecha
+        self.motivo = motivo
+
+    def __str__(self):
+        return f"Cita: {self.fecha} - {self.mascota.nombre} ({self.mascota.especie}) - Motivo: {self.motivo}"
+
+
