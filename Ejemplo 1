@@ -1,0 +1,45 @@
+# Clase que representa a un cliente
+class Cliente:
+    def __init__(self, nombre, cedula):
+        self.nombre = nombre
+        self.cedula = cedula
+
+    def __str__(self):
+        return f"{self.nombre} (Cédula: {self.cedula})"
+
+#clase para representar una habitación
+class Habitacion:
+    def __init__(self, numero, tipo, precio):
+        self.numero = numero
+        self.tipo = tipo  # ejemplo: "Simple", "Doble", "Suite"
+        self.precio = precio
+        self.disponible = True  # Al comienzo, todas están disponibles
+
+    def reservar(self):
+        self.disponible = False
+
+    def liberar(self):
+        self.disponible = True
+
+    def __str__(self):
+        estado = "Disponible" if self.disponible else "Ocupada"
+        return f"Habitación {self.numero} ({self.tipo}) - ${self.precio} - {estado}"
+
+
+# Clase para reserva
+class Reserva:
+    def __init__(self, cliente, habitacion):
+        self.cliente = cliente
+        self.habitacion = habitacion
+
+    def confirmar(self):
+        if self.habitacion.disponible:
+            self.habitacion.reservar()
+            print(f"Reserva confirmada para {self.cliente.nombre} en habitación {self.habitacion.numero}.")
+        else:
+            print(f"La habitación {self.habitacion.numero} no está disponible.")
+
+    def cancelar(self):
+        self.habitacion.liberar()
+        print(f"Reserva cancelada para {self.cliente.nombre}.")
+
