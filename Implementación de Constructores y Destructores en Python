@@ -1,0 +1,53 @@
+class Archivo:
+    """
+    Clase que simula la apertura y cierre de un archivo,
+    demostrando el uso de constructor y destructor.
+    """
+
+    def __init__(self, nombre):
+        """
+        Constructor (__init__)
+        Se llama automáticamente al crear un objeto.
+        Inicializa el nombre del archivo y "abre" el archivo.
+        """
+        self.nombre = nombre
+        self.abierto = True
+        print(f"Archivo '{self.nombre}' abierto.")
+
+    def escribir(self, texto):
+        """
+        Método para simular la escritura en el archivo.
+        Solo funciona si el archivo está abierto.
+        """
+        if self.abierto:
+            print(f"Escribiendo en '{self.nombre}': {texto}")
+        else:
+            print("Error: el archivo está cerrado.")
+
+    def __del__(self):
+        """
+        Destructor (__del__)
+        Se llama cuando el objeto se destruye o sale de alcance.
+        Aquí se simula el cierre del archivo para liberar recursos.
+        """
+        if self.abierto:
+            print(f"Cerrando archivo '{self.nombre}'.")
+            self.abierto = False
+        else:
+            print(f"Archivo '{self.nombre}' ya estaba cerrado.")
+
+
+# Uso del programa
+def main():
+    # Crear un objeto Archivo (constructor se ejecuta)
+    mi_archivo = Archivo("documento.txt")
+
+    # Usar método para escribir
+    mi_archivo.escribir("Hola, mundo!")
+
+    # Al finalizar el programa o cuando el objeto se elimine,
+    # se llamará automáticamente el destructor (__del__)
+    # para cerrar el archivo.
+
+if __name__ == "__main__":
+    main()
